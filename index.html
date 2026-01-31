@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Maddox is Awesome!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .heart-frame {
+            position: relative;
+            width: 220px;
+            height: 200px;
+            margin: 0 auto 20px;
+            animation: popIn 0.6s ease-out;
+        }
+
+        .heart-frame::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: white;
+            clip-path: path('M120 200 C120 200 20 130 20 70 C20 20 70 0 120 50 C170 0 220 20 220 70 C220 130 120 200 120 200 Z');
+            transform: scale(1.05);
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
+        }
+
+        .profile-pic {
+            width: 220px;
+            height: 200px;
+            object-fit: cover;
+            clip-path: path('M110 190 C110 190 10 120 10 60 C10 10 60 -10 110 40 C160 -10 210 10 210 60 C210 120 110 190 110 190 Z');
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0); opacity: 0; }
+            80% { transform: scale(1.1); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: #fff3cd;
+            margin-top: 10px;
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .qualities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .quality-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: slideUp 0.6s ease-out backwards;
+        }
+
+        .quality-card:nth-child(1) { animation-delay: 0.1s; }
+        .quality-card:nth-child(2) { animation-delay: 0.2s; }
+        .quality-card:nth-child(3) { animation-delay: 0.3s; }
+        .quality-card:nth-child(4) { animation-delay: 0.4s; }
+        .quality-card:nth-child(5) { animation-delay: 0.5s; }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .quality-card:hover {
+            transform: translateY(-10px) rotate(2deg);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+        }
+
+        .quality-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .quality-title {
+            font-size: 1.5rem;
+            color: #764ba2;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .quality-description {
+            color: #666;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 2rem;
+            animation: float 6s ease-in-out infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 30px;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .love-message {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            display: inline-block;
+        }
+
+        .start-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            cursor: pointer;
+            transition: opacity 0.5s ease;
+        }
+
+        .start-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .start-text {
+            font-size: 2rem;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        .start-heart {
+            font-size: 5rem;
+            margin-bottom: 20px;
+            animation: heartbeat 1s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .music-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.9);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 100;
+            transition: transform 0.2s ease;
+        }
+
+        .music-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .heart-frame {
+                width: 160px;
+                height: 145px;
+                transform: scale(0.75);
+            }
+
+            .profile-pic {
+                width: 160px;
+                height: 145px;
+            }
+
+            .qualities-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .quality-card {
+                padding: 20px;
+            }
+
+            .quality-card:hover {
+                transform: none;
+            }
+
+            .quality-icon {
+                font-size: 2.5rem;
+            }
+
+            .quality-title {
+                font-size: 1.3rem;
+            }
+
+            .quality-description {
+                font-size: 1rem;
+            }
+
+            .start-heart {
+                font-size: 4rem;
+            }
+
+            .start-text {
+                font-size: 1.5rem;
+                padding: 0 20px;
+                text-align: center;
+            }
+
+            footer {
+                margin-top: 40px;
+                padding: 20px;
+            }
+
+            .love-message {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+
+            .heart {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .heart-frame {
+                transform: scale(0.65);
+            }
+
+            .quality-card {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-hearts">
+        <span class="heart" style="left: 10%; animation-delay: 0s;">💜</span>
+        <span class="heart" style="left: 20%; animation-delay: 1s;">💖</span>
+        <span class="heart" style="left: 30%; animation-delay: 2s;">✨</span>
+        <span class="heart" style="left: 40%; animation-delay: 0.5s;">💜</span>
+        <span class="heart" style="left: 50%; animation-delay: 1.5s;">💖</span>
+        <span class="heart" style="left: 60%; animation-delay: 2.5s;">✨</span>
+        <span class="heart" style="left: 70%; animation-delay: 0.8s;">💜</span>
+        <span class="heart" style="left: 80%; animation-delay: 1.8s;">💖</span>
+        <span class="heart" style="left: 90%; animation-delay: 2.2s;">✨</span>
+    </div>
+
+    <div class="container">
+        <header>
+            <div class="heart-frame">
+                <img src="maddox.jpg" alt="Maddox" class="profile-pic">
+            </div>
+            <h1>Maddox is Awesome!</h1>
+            <p class="subtitle">Here's why he's the best</p>
+        </header>
+
+        <section class="qualities-grid">
+            <div class="quality-card">
+                <div class="quality-icon">😂</div>
+                <h2 class="quality-title">Hilarious</h2>
+                <p class="quality-description">
+                    He always knows how to make me laugh! Whether it's a silly joke or just being goofy,
+                    Maddox brightens every single day with his amazing sense of humor.
+                </p>
+            </div>
+
+            <div class="quality-card">
+                <div class="quality-icon">💝</div>
+                <h2 class="quality-title">Kind & Caring</h2>
+                <p class="quality-description">
+                    His heart is pure gold. Maddox is always thoughtful, always there when it matters,
+                    and never fails to show how much he cares.
+                </p>
+            </div>
+
+            <div class="quality-card">
+                <div class="quality-icon">🧠</div>
+                <h2 class="quality-title">Smart & Ambitious</h2>
+                <p class="quality-description">
+                    Brains AND personality? Yes please! Maddox is intelligent, driven, and always
+                    working towards his goals. His ambition is inspiring.
+                </p>
+            </div>
+
+            <div class="quality-card">
+                <div class="quality-icon">🌟</div>
+                <h2 class="quality-title">Supportive & Encouraging</h2>
+                <p class="quality-description">
+                    My biggest cheerleader! Maddox always believes in me, lifts me up,
+                    and makes me feel like I can do anything.
+                </p>
+            </div>
+
+            <div class="quality-card">
+                <div class="quality-icon">🦨</div>
+                <h2 class="quality-title">Stinky & Smelly</h2>
+                <p class="quality-description">
+                    But I love him anyway! Even when he's a little stinky, he's still
+                    the cutest, most lovable guy ever. Nobody's perfect, right?
+                </p>
+            </div>
+        </section>
+
+        <footer>
+            <div class="love-message">
+                Made with 💜 for the most awesome boyfriend ever
+            </div>
+        </footer>
+    </div>
+    <div class="start-overlay" id="startOverlay">
+        <div class="start-heart">💖</div>
+        <p class="start-text">Click anywhere to start</p>
+    </div>
+
+    <audio id="bgMusic" loop>
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
+
+    <button class="music-toggle" id="musicToggle" style="display: none;">🎵</button>
+
+    <script>
+        const overlay = document.getElementById('startOverlay');
+        const music = document.getElementById('bgMusic');
+        const toggle = document.getElementById('musicToggle');
+        let isPlaying = false;
+
+        overlay.addEventListener('click', function() {
+            overlay.classList.add('hidden');
+            music.play();
+            isPlaying = true;
+            toggle.style.display = 'block';
+        });
+
+        toggle.addEventListener('click', function() {
+            if (isPlaying) {
+                music.pause();
+                toggle.textContent = '🔇';
+                isPlaying = false;
+            } else {
+                music.play();
+                toggle.textContent = '🎵';
+                isPlaying = true;
+            }
+        });
+    </script>
+</body>
+</html>
